@@ -1,0 +1,21 @@
+units       metal
+
+dimension   2
+boundary    p p p
+
+atom_style  charge
+read_data   graphene.dat
+
+pair_style  reax
+pair_coeff  * * ffield.reax 1
+
+variable a1      equal lx/3
+variable a2      equal ly/sqrt(3)
+variable energy  equal etotal/atoms
+
+fix 1 all deform 1 x erate 1.0 y erate 1.0 remap x
+
+thermo 1
+thermo_style custom step etotal pe ke v_energy v_a1 v_a2 pxx pyy
+
+run 2000
