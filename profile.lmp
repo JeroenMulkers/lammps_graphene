@@ -1,0 +1,47 @@
+################################################################################
+# GRAPHENE: POTENTIAL PROFILE
+################################################################################
+#
+# Input script for lammps to calculate the potential energy in function of the
+# distance between carbon atoms in a graphene layer.
+#
+# When using this script, make sure that lammps is installed with the USER-REAXC
+# and the MANYBODY packages.
+#
+# Date: 28/03/2016
+# Author: Jeroen Mulkers
+# Mail: jeroen.mulkers@uantwerpen.be
+#
+################################################################################
+
+
+# UNITS
+# 'real' units are needed when using reax/c. A useful energy conversion factor
+# is defined.
+units        real
+variable     fenergy equal 0.043 # Kcal/mole -> eV
+
+# GRAPHENE SHEET
+# The atom positions and the simulation box size will be read from a data file.
+# Reactive force fields (reaxFF) are used to describe the interaction between
+# the carbon atoms.(The pair_style reax is deprecated. so we use the modern
+# reax/c implementation)
+dimension    2
+boundary     p p p
+atom_style   charge
+read_data    graphene.dat
+pair_style   reax/c NULL checkqeq no
+pair_coeff   * * ffield.reax C
+
+# OUTPUT
+# Calculate the average total energy per atom and the distance 'a' between
+# carbon atoms in two ways (should give the same size)
+variable     energy equal etotal/atoms*${fenergy}
+variable     a1 equal lx/3
+variable     a2 equal ly/sqrt(3)
+thermo_style custom step etotal pe ke v_energy v_a1 v_a2 pxx pyy
+
+# DEFORMATION
+fix          1 all deform 1 x erate 0.001 y erate 0.001 remap x
+thermo       1
+run          2000

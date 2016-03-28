@@ -1,0 +1,65 @@
+################################################################################
+# GRAPHENE: MELTING
+################################################################################
+#
+# Input script for lammps to determine the melting temperature
+#
+# When using this script, make sure that lammps is installed with the USER-REAXC
+# and the MANYBODY packages.
+#
+# Date: 28/03/2016
+# Author: Jeroen Mulkers
+# Mail: jeroen.mulkers@uantwerpen.be
+#
+################################################################################
+
+
+# UNITS
+# 'real' units are needed when using reax/c. The default time step (1fs) for
+# real units is used. Some useful conversion factors are defined.
+units        real
+timestep     1
+variable     fpress  equal 0.000101325  # atm -> GPa
+variable     fenergy equal 0.043        # Kcal/mole -> eV
+
+# GRAPHENE SHEET
+# The atom positions and the simulation box size will be read from a data file.
+# Reactive force fields (reaxFF) are used to describe the interaction between
+# the carbon atoms.(The pair_style reax is deprecated. so we use the modern
+# reax/c implementation)
+dimension    3
+boundary     p p f
+atom_style   charge
+read_data    graphene.dat
+pair_style   reax/c NULL checkqeq no
+pair_coeff   * * ffield.reax C
+
+# OUTPUT
+# Compute the average total, kinetic and potential energy per atom and the mean
+# square displacement.
+variable     etotal  equal etotal/atoms*${fenergy} #eV/atom
+variable     pe      equal     pe/atoms*${fenergy} #eV/atom
+variable     ke      equal     ke/atoms*${fenergy} #eV/atom
+compute      msd all msd
+thermo_style custom step time temp etotal v_etotal v_pe v_ke &
+             c_msd[1] c_msd[2] c_msd[3] c_msd[4]
+
+# EQUILIBRATION
+# Relaxation of the system will be done in a NPT ensemble. The size of the
+# simulation box can change in x and y direction to resolve stresses. The number
+# of time steps should be large enough to relax the system in your final
+# simulation but can be small for debugging purposes.
+variable     temp index 300
+variable     seed index 1717
+velocity     all create ${temp} ${seed} dist uniform
+fix          fnpt all npt temp ${temp} ${temp} 10 x 0 0 2000 y 0 0 2000
+thermo       1
+run          1000
+
+# MELTING
+# The temperature should increase slowly in order to find the melting
+# temperature -> The number of time steps should be large
+variable     final_temp index 5000 #K
+dump         1 all atom 1 dmp.lammpstrj
+fix          fnpt all npt temp ${temp} ${final_temp} 10 x 0 0 500 y 0 0 500
+run          100000
