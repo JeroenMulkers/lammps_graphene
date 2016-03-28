@@ -33,9 +33,9 @@ variable     fenergy equal 0.043        # Kcal/mole -> eV
 dimension    3
 boundary     p p f
 atom_style   charge
-read_data    silicene.dat
+read_data    graphene.dat
 pair_style   reax/c NULL checkqeq no
-pair_coeff   * * ffield.reax Si
+pair_coeff   * * ffield.reax C
 
 # OUTPUT
 # Calculate the average total, kinetic and potential energy per atom. Stress and

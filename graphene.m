@@ -2,8 +2,8 @@
 
 % INPUT PARAMETERS:
 a  = 1.0;   % interatomic distance
-nx = 10;    % number of repetitions in the x direction
-ny = 30;    % number of repetitions in the y direction
+nx = 1;     % number of repetitions in the x direction
+ny = 1;     % number of repetitions in the y direction
 filename = 'graphene.dat';
 writeresults = true;
 showresults = true;
