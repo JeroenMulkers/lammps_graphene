@@ -2,7 +2,7 @@ Preparation
 -----------
 
 1. Install [lammps](http://lammps.sandia.gov/) (with reax package), consult the [manual](http://lammps.sandia.gov/doc/Manual.html) of lammps for instructions
-2. Install [vmd](http://lammps.sandia.gov/) (visual molecular dynamics)
+2. Install [vmd](http://www.ks.uiuc.edu/Research/vmd/) (visual molecular dynamics)
 3. Read sections 2.6, 3.1 - 3.3 in the manual of lammps
 4. Have a quick look at all the files in this repository
 5. For python users: have a look at the [log.py](http://pizza.sandia.gov/doc/log.html) tool from the pizza.py module.
