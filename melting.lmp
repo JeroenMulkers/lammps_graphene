@@ -52,7 +52,7 @@ thermo_style custom step time temp etotal v_etotal v_pe v_ke &
 variable     temp index 300
 variable     seed index 1717
 velocity     all create ${temp} ${seed} dist uniform
-fix          fnpt all npt temp ${temp} ${temp} 10 x 0 0 2000 y 0 0 2000
+fix          fnpt all npt temp ${temp} ${temp} 10 x 0 0 500 y 0 0 500
 thermo       1
 run          1000
 
