@@ -1,7 +1,7 @@
 Preparation
 -----------
 
-1. Install [lammps](http://lammps.sandia.gov/) (with reax package), consult the [manual](http://lammps.sandia.gov/doc/Manual.html) of lammps for instructions
+1. Install [lammps](http://lammps.sandia.gov/) (with the USER-REAXC package), consult the [manual](http://lammps.sandia.gov/doc/Manual.html) of lammps for instructions
 2. Install [vmd](http://www.ks.uiuc.edu/Research/vmd/) (visual molecular dynamics)
 3. Read sections 2.5, 3.1 - 3.3 in the [manual](http://lammps.sandia.gov/doc/Manual.html) of lammps
 4. Have a quick look at all the files in this repository
