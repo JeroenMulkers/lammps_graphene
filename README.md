@@ -1,9 +1,11 @@
+* Disclaimer: this repository contains the files for a homework assignment for a computational physics class in 2016. The LAMMPS input files might no longer be up to date with the current release of LAMMPS. *
+
 Preparation
 -----------
 
 1. Install [lammps](http://lammps.sandia.gov/) (with the USER-REAXC package), consult the [manual](http://lammps.sandia.gov/doc/Manual.html) of lammps for instructions
 2. Install [vmd](http://www.ks.uiuc.edu/Research/vmd/) (visual molecular dynamics)
-3. Read sections 2.5, 3.1 - 3.3 in the [manual](http://lammps.sandia.gov/doc/Manual.html) of lammps
+3. Have a look at the [manual](http://lammps.sandia.gov/doc/Manual.html) of lammps
 4. Have a quick look at all the files in this repository
 5. For python users: have a look at the [log.py](http://pizza.sandia.gov/doc/log.html) tool from the pizza.py module.
 
@@ -16,8 +18,3 @@ Tasks
 4. Study the buckling of graphene under compression. This can be done with 'tensiletest.lmp'. Check how computational parameters influence the simulation.
 5. Use 'melting.lmp' to determine the melting temperature of graphene. Check how computational parameters influence the simulation.
 6. Redo task 3,4 and 5 for silicene. Use the reaxFF parameters of Si in 'ffield.reax.CHONSSi.2' and the silicene sheet defined in 'silicene.dat'. Make a comparison of the results for graphene and silicene.
-
-Contact
--------
-
-jeroen.mulkers@uantwerpen.be
