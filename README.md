@@ -1,4 +1,4 @@
-* Disclaimer: this repository contains the files for a homework assignment for a computational physics class in 2016. The LAMMPS input files might no longer be up to date with the current release of LAMMPS. *
+*Disclaimer: this repository contains the files for a homework assignment for a computational physics class in 2016. The LAMMPS input files might no longer be up to date with the current release of LAMMPS.*
 
 Preparation
 -----------
